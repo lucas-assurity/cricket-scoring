@@ -41,6 +41,23 @@
     assert.equal(getScore(), 0);
   });
 
+  QUnit.test("treat . as 0 when removing from score board", function( assert ) {
+    enter(1);
+    assert.equal(getScore(), 1);
+    assert.equal(getScorecard(), '1');
+
+    enter(6);
+    assert.equal(getScore(), 7);
+    assert.equal(getScorecard(), '16');
+    enter('.');
+    assert.equal(getScore(), 7);
+    assert.equal(getScorecard(), '16.');
+
+    backspace();
+    assert.equal(getScore(), 7);
+    assert.equal(getScorecard(), '16');
+  });
+
 
   function getScore() {
     return document.getElementById('score').innerHTML;
